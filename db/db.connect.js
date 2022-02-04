@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 var mongo = require('mongodb');
-const mySecret = process.env['MONGO_PASSWORD']
+
+const password = process.env['MONGO_PASSWORD']
 
 const URL =
-  `mongodb+srv://MadhushreeKunder:${mySecret}@cluster0.r7b8i.mongodb.net/quizdb?retryWrites=true&w=majority`;
+  `mongodb+srv://MadhushreeKunder:${password}@cluster0.r7b8i.mongodb.net/quizdb?retryWrites=true&w=majority`;
 
 async function initialiseDBConnection(){
   try {
