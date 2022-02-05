@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const {quizOne, quizTwo} = require('./../data');
+const { quizzesDB} = require('./../data');
+
 
 const OptionSchema = new Schema({
   text: {
@@ -8,10 +11,9 @@ const OptionSchema = new Schema({
   },
   isRight: {
     type: Boolean,
-    required: "Right answer is requires"
+    required: "Right answer is required"
   },
 });
-
 
 const QuestionSchema = new Schema({
   question: {
@@ -29,6 +31,18 @@ const QuestionSchema = new Schema({
   options: [OptionSchema]
 });
 
+const HighScoreSchema = new Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Auth',
+      required: 'UserId required for high score'
+  }, 
+  score: {
+    type: Number,
+    required: 'Score is required for high score'
+  }
+})
+
 const QuizSchema = new Schema({
   createdAt: Number,
   updatedAt: Number,
@@ -37,7 +51,13 @@ const QuizSchema = new Schema({
     required: "Quiz Name is Required",
     unique: "QuizName should be unique"
   },
-  _id: String,
+  categoryId:{
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
+    required: 'Category Id is required'
+  }, 
+
+  highScore: [HighScoreSchema],
   questions: [QuestionSchema]
 
 }, {
@@ -47,7 +67,7 @@ const QuizSchema = new Schema({
 const Quiz = mongoose.model('Quiz', QuizSchema);
 
 const addQuizData = async () => {
-  quizdb.forEach(async (quiz) => {
+  quizzesDB.forEach(async (quiz) => {
     const NewQuiz = new Quiz(quiz);
     const savedQuiz = await NewQuiz.save();
     console.log(savedQuiz);

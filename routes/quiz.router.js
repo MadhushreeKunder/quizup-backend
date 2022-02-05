@@ -5,7 +5,7 @@ const { Quiz } = require("../models/quiz.model");
 router.get("/", async (req, res) => {
   try {
     const quiz = await Quiz.find({})
-      .select('quizName categoryId level thumbnail')
+      .select('quizName')
       .populate({
         path: 'categoryId',
         select: 'name'
@@ -24,6 +24,20 @@ router.get("/", async (req, res) => {
     })
   }
 })
+.post(async (req, res) => {
+  try {
+    const quiz = req.body
+    const NewQuiz = new Quiz(quiz);
+    const savedQuiz = await NewQuiz.save();
+    res.status(201).json({ success: true, quiz: savedQuiz })
+  } catch(err) {
+    res.status(500).json({ success: false, message: "unable to add quiz", errMessage: err.message})
+  }
+})
+
+
+
+
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
