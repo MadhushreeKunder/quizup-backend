@@ -1,10 +1,10 @@
 const quizzesDB = [
   {
     quizName: "Indian Space Programme",
-    categoryId: "",
+    categoryId: "61fed337fa543f6f85df15f1",
     highScore: [
       {
-        userId: "",
+        userId: "61fe141b6ed9b1a8c60321ea",
         score: 20
       }
     ],
@@ -133,10 +133,10 @@ const quizzesDB = [
 
   {
     quizName: "Space and Stars",
-    categoryId: "",
+    categoryId: "61fed3c1fa543f6f85df15f3",
     highScore: [
       {
-        userId: "",
+        userId: "61fecc1288963fec62910d9d",
         score: 20
       }
     ],
@@ -271,7 +271,7 @@ const categoriesDB = [
     noOfQuizzes: 1
   },
   {
-    name: 'Space and Stars',
+    name: 'Outer Space',
     noOfQuizzes: 1
   }
 ];

@@ -1,6 +1,8 @@
+const mongoose= require('mongoose');
+const { categoriesDB} = require("./../data");
+const { Schema} = mongoose;
 
-
-const CategorySchema = newSchema({
+const CategorySchema = new Schema({
    createdAt: Number,
    updatedAt: Number,
    name: {

@@ -1,18 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const { Quiz } = require("../models/quiz.model");
+const { Quiz } = require("../models/quizzes.model");
 
-router.get("/", async (req, res) => {
+router.route("/") 
+.get(async (req, res) => {
   try {
-    const quiz = await Quiz.find({})
-      .select('quizName')
+    const quizzes = await Quiz.find({})
+      .select('quizName categoryId')
       .populate({
         path: 'categoryId',
         select: 'name'
       })
       .exec();
     return res.status(200).json({
-      quiz,
+      quizzes,
       success: true,
       message: "Successful Retrieval"
     });

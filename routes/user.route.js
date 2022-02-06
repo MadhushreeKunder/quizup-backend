@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { extend } = require("lodash");
 const { User } = require("../models/user.model");
-const { Quiz } = require('../models/quiz.model');
+const { Quiz } = require('../models/quizzes.model');
 
 router.get('/', async (req, res) => {
   const { userId } = req.user;

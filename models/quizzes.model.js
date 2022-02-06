@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-// const {quizOne, quizTwo} = require('./../data');
 const { quizzesDB} = require('./../data');
 
 

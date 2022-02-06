@@ -13,11 +13,13 @@ const { errorHandler } = require("./middlewares/error-handler.middleware")
 const { routeNotFound } = require("./middlewares/route-not-found.middleware")
 
 
-const { addQuizData } = require("./models/quiz.model");
+const { addQuizData } = require("./models/quizzes.model");
+const { addCategoryData } =require("./models/categories.model");
 
-const auth = require("./routes/auth.router");
-const user = require("./routes/user.router");
-const quiz = require("./routes/quiz.router");
+const auth = require("./routes/auth.route");
+const user = require("./routes/user.route");
+const quizzes = require("./routes/quizzes.route");
+const categories =  require("./routes/categories.route");
 
 
 const PORT = process.env.PORT || 5000;
@@ -30,8 +32,9 @@ app.use(bodyParser.json());
 initialiseDBConnection();
 
 app.use('/auth', auth);
-app.use('/user', user);
+app.use('/user', authVerify, user);
 app.use('/quizzes', quizzes);
+app.use('/categories', categories);
 
 
 app.get("/" , (req, res) => {
