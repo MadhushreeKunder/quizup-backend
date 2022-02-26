@@ -32,9 +32,10 @@ app.use(bodyParser.json());
 initialiseDBConnection();
 
 app.use('/auth', auth);
-app.use('/user', authVerify, user);
 app.use('/quizzes', quizzes);
 app.use('/categories', categories);
+app.use('/user', authVerify, user);
+
 
 
 app.get("/" , (req, res) => {

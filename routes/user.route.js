@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   try {
     const user = await User.findById(userId).populate({
       path: 'solvedQuizzes.quizId',
-      select: 'quizName'
+      select: 'quizName categoryId'
     }).exec();
     res.status(200).json({
       // or user
@@ -40,7 +40,7 @@ router.post('/solved-quizzes', async (req, res) => {
     const savedDetails = await user.save();
     const populatedData = await savedDetails.populate({
       path: 'solvedQuizzes.quizId',
-      select: 'quizName'
+      select: 'quizName categoryId'
     }).execPopulate();
 
     res.status(201).json({

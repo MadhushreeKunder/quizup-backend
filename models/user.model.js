@@ -18,7 +18,7 @@ const UserSchema = new Schema({
     }
   }],
   totalScore: { type: Number, default: 0 },
-  knowledgeLevel: {type: Number, deafult: 0}
+  knowledgeLevel: {type: Number, default: 0}
 }, {
     timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
   });
