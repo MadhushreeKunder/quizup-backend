@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 const { extend } = require("lodash");
-const { User } = require("../models/user.model");
+const { UserDetail } = require("../models/user.model");
 const { Quiz } = require('../models/quizzes.model');
 
 router.get('/', async (req, res) => {
   const { userId } = req.user;
   try {
-    const user = await User.findById(userId).populate({
+    const user = await UserDetail.findById(userId).populate({
       path: 'solvedQuizzes.quizId',
       select: 'quizName categoryId'
     }).exec();
@@ -30,7 +30,7 @@ router.post('/solved-quizzes', async (req, res) => {
   const { userId } = req.user;
   const { quizId, score } = req.body;
   try {
-    const user = await User.findById(userId);
+    const user = await UserDetail.findById(userId);
     user.solvedQuizzes.push({ quizId, score });
     const quiz = await Quiz.findById(quizId);
 
@@ -62,7 +62,7 @@ router.post('/solved-quizzes/:quizId', async (req, res) => {
   const { score } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await UserDetail.findById(userId);
     const quiz = await Quiz.findById(quizId);
 
     const userQuiz = user.solvedQuizzes.find(item => item.quizId == quizId);

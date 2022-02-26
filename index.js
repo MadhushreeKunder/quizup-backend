@@ -17,7 +17,7 @@ const { addQuizData } = require("./models/quizzes.model");
 const { addCategoryData } =require("./models/categories.model");
 
 const auth = require("./routes/auth.route");
-const user = require("./routes/user.route");
+const userDetails = require("./routes/user.route");
 const quizzes = require("./routes/quizzes.route");
 const categories =  require("./routes/categories.route");
 
@@ -34,7 +34,7 @@ initialiseDBConnection();
 app.use('/auth', auth);
 app.use('/quizzes', quizzes);
 app.use('/categories', categories);
-app.use('/user', authVerify, user);
+app.use('/user-details', authVerify, userDetails);
 
 
 

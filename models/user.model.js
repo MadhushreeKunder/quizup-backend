@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const UserSchema = new Schema({
+const UserDetailSchema = new Schema({
   createdAt: Number,
   updatedAt: Number,
   _id: { type: Schema.Types.ObjectId, ref: 'Auth' },
@@ -23,6 +23,6 @@ const UserSchema = new Schema({
     timestamps: { currentTime: () => Math.floor(Date.now() / 1000) }
   });
 
-const User = mongoose.model('User', UserSchema);
+const UserDetail = mongoose.model('UserDetail', UserDetailSchema);
 
-module.exports = { User };
+module.exports = { UserDetail };

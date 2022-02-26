@@ -3,7 +3,7 @@ const router = express.Router();
 
 const bcrypt = require("bcrypt");
 const { Auth } = require("../models/auth.model");
-const { User } = require('../models/user.model');
+const { UserDetail } = require('../models/user.model');
 
 const { generateToken } = require("../utils.js");
 
